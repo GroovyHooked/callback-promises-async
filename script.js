@@ -1,68 +1,31 @@
+const timer = () => Math.random() * 10000;
+
 const service = (service, time) => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      console.log(service + ' ' + time);
+      console.log(service + " " + time);
       resolve(service);
     }, time);
   });
 };
 
-const handleServices1 = (data, serviceToRun) => {
-  console.log('data: ', data);
-  let first = false;
-  let second = false;
-  if (data[0] === 'service1' || data[1] === 'service1') {
-    first = true;
+const handlePromises = async () => {
+  const promise1 = await service("service1", timer());
+  const promise2 = await service("service2", timer());
+  const promise3 = await service("service3", timer());
+  const promise4 = await service("service4", timer());
+  let promise5;
+  let promise6;
+  let promise7;
+  if (promise1 && promise2) {
+    promise5 = await service("service5", timer());
   }
-  if (data[0] === 'service2' || data[1] === 'service2') {
-    second = true;
+  if (promise3 && promise4) {
+    promise6 = await service("service6", timer());
   }
-  if (first && second) {
-    return new Promise((resolve) => {
-      resolve(serviceToRun('service5', Math.random() * 10000));
-    });
-  }
-};
-
-const handleServices2 = (data, serviceToRun) => {
-  console.log('data: ', data);
-  let first = false;
-  let second = false;
-  if (data[0] === 'service3' || data[1] === 'service3') {
-    first = true;
-  }
-  if (data[0] === 'service4' || data[1] === 'service4') {
-    second = true;
-  }
-  if (first && second) {
-    return new Promise((resolve) => {
-      resolve(serviceToRun('service6', Math.random() * 10000));
-    });
+  if (promise5 && promise6) {
+    promise7 = await service("service7", timer());
   }
 };
-let finalValue1 = null;
-let finalValue2 = null;
 
-Promise.all([
-  service('service1', Math.random() * 10000),
-  service('service2', Math.random() * 10000),
-]).then((values) => {
-  handleServices1(values, service).then((value) => {
-    console.log('value1: ', value);
-    return (finalValue1 = value);
-  });
-});
-
-Promise.all([
-  service('service3', Math.random() * 10000),
-  service('service4', Math.random() * 10000),
-]).then((values) => {
-  handleServices2(values, service).then((value) => {
-    console.log('value2: ', value);
-    return (finalValue2 = value);
-  });
-});
-
-if (finalValue1 !== null && finalValue2 !== null) {
-  service('service7', Math.random() * 10000);
-}
+handlePromises();
