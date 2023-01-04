@@ -1,80 +1,53 @@
 const timer = () => Math.random() * 10000;
 const dependencies = []
 
-const service1 = (callback) => {
-  console.log('Started: Service 1');
+const service = (callback, dep, nb) => {
+  console.log(`Started: ${nb}`);
+  const time = timer()
   setTimeout(() => {
-    console.log('Ended: Service 1');
-    dependencies[0] = 'done'
-    if (dependencies[0] === 'done' && dependencies[1] === 'done') {
+    console.log(`Ended: ${nb} in ${Math.round(time)}ms`);
+    dep[nb - 1] = true
+    if (dep[nb - 1] && dep[nb]) {
       callback();
     }
-  }, timer());
+  }, time);
 }
 
-const service2 = (callback) => {
-  console.log('Started: Service 2');
-  setTimeout(() => {
-    console.log('Ended: Service 2');
-    dependencies[1] = 'done'
-    if (dependencies[0] === 'done' && dependencies[1] === 'done') {
-      callback();
-    }
-  }, timer());
-}
+const service1 = service(service5, dependencies, 1);
+const service2 = service(service5, dependencies, 2);
+const service3 = service(service6, dependencies, 3);
+const service4 = service(service6, dependencies, 4);
 
-const service3 = (callback) => {
-  console.log('Started: Service 3');
-  setTimeout(() => {
-    console.log('Ended: Service 3');
-    dependencies[2] = 'done'
-    if (dependencies[2] === 'done' && dependencies[3] === 'done') {
-      callback();
-    }
-  }, timer());
-}
 
-const service4 = (callback) => {
-  console.log('Started: Service 4');
-  setTimeout(() => {
-    console.log('Ended: Service 4');
-    dependencies[3] = 'done'
-    if (dependencies[2] === 'done' && dependencies[3] === 'done') {
-      callback();
-    }
-  }, timer());
-}
-
-const service5 = () => {
-  console.log('Started: Service 5');
+function service5() {
+  console.log('Service 1 & 2 ended, Starting Service 5');
   setTimeout(() => {
     console.log('Ended: Service 5');
-    dependencies[4] = 'done'
-    if (dependencies[4] === 'done' && dependencies[5] === 'done') {
+    dependencies[4] = true
+    if (dependencies[4] && dependencies[5]) {
       service7();
     }
   }, timer());
 }
 
-const service6 = () => {
-  console.log('Started: Service 6');
+function service6() {
+  console.log('Service 3 & 4 ended, Starting Service 6');
   setTimeout(() => {
     console.log('Ended: Service 6');
-    dependencies[5] = 'done'
-    if (dependencies[4] === 'done' && dependencies[5] === 'done') {
+    dependencies[5] = true
+    if (dependencies[4] && dependencies[5]) {
       service7();
     }
   }, timer());
 }
 
-const service7 = () => {
-  console.log('Started: Service 7');
+function service7() {
+  console.log('Service 5 & 6 ended, Starting Service 7');
   setTimeout(() => {
     console.log('Ended: Service 7');
-    dependencies[6] = 'done'
+    dependencies[6] = true
   }, timer());
 }
-
 
 service1(service5);
 service2(service5);
