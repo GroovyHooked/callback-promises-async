@@ -122,7 +122,6 @@ const service7 = () => {
   setTimeout(() => {
     service7_end.innerHTML = finalTime;
     console.log(`%cService 7 started at ${temp}s, ended at ${finalTime}s and lasted ${duration}s`, 'color: green');
-    dependencies[6] = true
   }, timer());
 }
 
