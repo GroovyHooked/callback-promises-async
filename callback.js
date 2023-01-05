@@ -82,7 +82,7 @@ const service5 = () => {
   const endTime = Math.round(time / 1000 * 100) / 100
   service5_start.innerHTML = finalTime1;
   console.log('%cService 1 & 2 ended at ' + finalTime1 + ', Starting Service 5', 'color: red');
-  let temp = finalTime1;
+  const temp = finalTime1;
   finalTime1 += endTime;
   setTimeout(() => {
     service5_end.innerHTML = finalTime1;
@@ -99,7 +99,7 @@ const service6 = () => {
   const endTime = Math.round(time / 1000 * 100) / 100
   service6_start.innerHTML = finalTime2;
   console.log('%cService 3 & 4 ended at ' + finalTime2 + ', Starting Service 6', 'color: blue');
-  let temp = finalTime2;
+  const temp = finalTime2;
   finalTime2 += endTime;
   setTimeout(() => {
     service6_end.innerHTML = finalTime2;
@@ -117,7 +117,7 @@ const service7 = () => {
   let finaltime = finalTime1 > finalTime2 ? finalTime1 : finalTime2;
   service7_start.innerHTML = finaltime;
   console.log('%cService 5 & 6 ended at ' + finaltime + 's, Starting Service 7', 'color: green');
-  let temp = finaltime;
+  const temp = finaltime;
   finaltime += endTime;
   setTimeout(() => {
     service7_end.innerHTML = finaltime;
