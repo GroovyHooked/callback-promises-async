@@ -26,47 +26,53 @@ const dependencies = {
   service6: false,
 };
 
-const service = (n, startTime, dep) => {
+const service = (n, startElement, endElement, startTime, dep) => {
   const time = timer();
   const duration = Math.round(time / 1000 * 100) / 100;
   return new Promise((resolve) => {
     setTimeout(() => {
       dep[`service${n}`] = true;
       console.log(`service${n}: started at ${startTime}s and lasted ${duration}s for a total of ${startTime + duration}s`);
+      displayDuration(startElement, endElement, startTime, duration + startTime);
       resolve(duration + startTime);
     }, time);
   });
 };
 
 
-const runService = (n, startTime, deps) => {
-  service(n, startTime, deps).then((duration) => {
+const runService = (n, startElement, endElement, startTime, deps) => {
+  service(n, startElement, endElement, startTime, deps).then((duration) => {
     if (deps.service1 && deps.service2) {
       deps.service1 = false;
       deps.service2 = false;
-      service(5, duration, deps).then((duration) => {
+      service(5, service5_start, service5_end, duration, deps).then((duration) => {
         if (deps.service5 && deps.service6) {
-          service(7, duration, deps)
+          service(7, service7_start, service7_end, duration, deps)
         }
       })
     }
     if (deps.service3 && deps.service4) {
       deps.service3 = false;
       deps.service4 = false;
-      service(6, duration, deps).then((duration) => {
+      service(6, service6_start, service6_end, duration, deps).then((duration) => {
         if (deps.service5 && deps.service6) {
-          service(7, duration, deps)
+          service(7, service7_start, service7_end, duration, deps)
         }
       })
     }
   });
 }
 
+const displayDuration = (startElement, endElement, startTime, duration) => {
+  startElement.innerHTML = startTime;
+  endElement.innerHTML = duration;
+};
 
-runService(1, 0, dependencies);
-runService(2, 0, dependencies);
-runService(3, 0, dependencies);
-runService(4, 0, dependencies);
+
+runService(1, service1_start, service1_end, 0, dependencies);
+runService(2, service2_start, service2_end, 0, dependencies);
+runService(3, service3_start, service3_end, 0, dependencies);
+runService(4, service4_start, service4_end, 0, dependencies);
 
 
 
