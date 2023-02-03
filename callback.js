@@ -21,7 +21,6 @@ const objectOfDurations = {
   duration7: Math.round((timer() / 1000) * 100) / 100,
 };
 
-console.log({ objectOfDurations });
 let totalTime1 = 0;
 let totalTime2 = 0;
 let finalTime = 0;
