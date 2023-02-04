@@ -15,6 +15,9 @@
     <button id="start-promises" class="button" type="submit" onclick="">Start promises</button>
     <button id="start-async-await" class="button" type="submit" onclick="">Start async/await</button>
   </div>
+  <div class="group group-pattern">
+    <p>Pattern: <strong class="pattern">press a button to start</strong></p>
+  </div>
   <div class="group">
     <h1>Services with no dependencies</h1>
     <div class="flex">
@@ -68,9 +71,9 @@
   <script src="./helper.js"></script>
   <script>
     window.onload = function () {
-      window.objectOfNodes.buttons.button_callbacks.addEventListener("click", () => window.startScript('./callback.js', button_callbacks));
-      window.objectOfNodes.buttons.button_promises.addEventListener("click", () => window.startScript('./promises.js', button_promises));
-      window.objectOfNodes.buttons.button_async.addEventListener("click", () => window.startScript('./async.js', button_async));
+      window.objectOfNodes.buttons.button_callbacks.addEventListener("click", () => window.startScript('./callback.js', button_callbacks, '#ff8e8e'));
+      window.objectOfNodes.buttons.button_promises.addEventListener("click", () => window.startScript('./promises.js', button_promises, '#0077b6'));
+      window.objectOfNodes.buttons.button_async.addEventListener("click", () => window.startScript('./async.js', button_async, '#40916c'));
     };
   </script>
 </body>

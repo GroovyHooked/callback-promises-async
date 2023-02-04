@@ -1,10 +1,12 @@
 body {
   font-family: monospace;
   font-size: 16px;
+  background-color: antiquewhite;
 }
 h1 {
-  font-size: 2vmax;
+  font-size: 3vmax;
   margin: 0 0 20px;
+  font-family: monospace;
 }
 .group {
   border: 2px solid black;
@@ -12,6 +14,16 @@ h1 {
   padding: 20px;
   text-align: center;
 }
+.group-pattern{
+  padding: 0;
+  width: 50%;
+  margin: 0 auto 15px;
+  height: 50px;
+}
+.group-pattern > p {
+  margin: 10px;
+}
+
 .flex {
   display: flex;
   justify-content: center;
@@ -24,7 +36,8 @@ h1 {
   padding: 20px;
 }
 div{
-  font-size: 2.5vmin;
+  font-size: 3vmin;
+  font-family: ui-monospace;
 }
 .group-buttons{
   display: flex;
