@@ -12,10 +12,27 @@ const service6_start = document.getElementById("service6-start");
 const service6_end = document.getElementById("service6-end");
 const service7_start = document.getElementById("service7-start");
 const service7_end = document.getElementById("service7-end");
+const service1_div = document.querySelector(".service1");
+const service2_div = document.querySelector(".service2");
+const service3_div = document.querySelector(".service3");
+const service4_div = document.querySelector(".service4");
+const service5_div = document.querySelector(".service5");
+const service6_div = document.querySelector(".service6");
+const service7_div = document.querySelector(".service7");
+
 
 export const timer = () => Math.random() * 10000;
 
-export function logger(n, totalDuration, time) {
+const colors = {
+  1: "pink",
+  2: "pink",
+  3: "lightblue",
+  4: "lightblue",
+  5: "#ff8e8e",
+  6: "#0077b6",
+  7: "#40916c",
+}
+export const logger = (n, totalDuration, time) => {
   const pickColorAndLog = (n, totalDuration, time, color) => {
     if (color) {
       return console.log(
@@ -32,54 +49,63 @@ export function logger(n, totalDuration, time) {
     );
   };
   if (n < 3) {
-    pickColorAndLog(n, totalDuration, time, "pink");
+    pickColorAndLog(n, totalDuration, time, colors[n]);
   }
   if (n === 3 || n === 4) {
-    pickColorAndLog(n, totalDuration, time, "lightblue");
+    pickColorAndLog(n, totalDuration, time, colors[n]);
   }
   if (n === 5) {
-    pickColorAndLog(n, totalDuration, time, "red");
+    pickColorAndLog(n, totalDuration, time, colors[n]);
   }
   if (n === 6) {
-    pickColorAndLog(n, totalDuration, time, "blue");
+    pickColorAndLog(n, totalDuration, time, colors[n]);
   }
   if (n === 7) {
-    pickColorAndLog(n, totalDuration, time, "green");
+    pickColorAndLog(n, totalDuration, time, colors[n]);
   }
 }
 
-export const objectOfNode = {
+const objectOfNodes = {
   1: {
     start: service1_start,
     end: service1_end,
+    div: service1_div,
   },
   2: {
     start: service2_start,
     end: service2_end,
+    div: service2_div,
   },
   3: {
     start: service3_start,
     end: service3_end,
+    div: service3_div,
   },
   4: {
     start: service4_start,
     end: service4_end,
+    div: service4_div,
   },
   5: {
     start: service5_start,
     end: service5_end,
+    div: service5_div,
   },
   6: {
     start: service6_start,
     end: service6_end,
+    div: service6_div,
   },
   7: {
     start: service7_start,
     end: service7_end,
+    div: service7_div,
   },
 };
 
-export function displayDuration(n, startTime, duration) {
-  objectOfNode[n].start.innerHTML = startTime;
-  objectOfNode[n].end.innerHTML = duration;
+export const displayDuration = (n, startTime, duration) => {
+  objectOfNodes[n].start.innerHTML = startTime;
+  objectOfNodes[n].end.innerHTML = duration;
+  objectOfNodes[n].div.style.backgroundColor = colors[n];
+  objectOfNodes[n].div.style.color = "white"
 }
