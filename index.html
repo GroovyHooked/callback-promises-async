@@ -10,14 +10,22 @@
 </head>
 
 <body>
+
   <div class="group group-buttons">
     <button id="start-callbacks" class="button" type="submit" onclick="">Start callbacks</button>
     <button id="start-promises" class="button" type="submit" onclick="">Start promises</button>
     <button id="start-async-await" class="button" type="submit" onclick="">Start async/await</button>
   </div>
-  <div class="group group-pattern">
-    <p>Pattern: <strong class="pattern">press a button to start</strong></p>
+
+  <div class="group" id="group-desc">
+    <div class="group group-pattern">
+      <p>Pattern: <strong class="pattern">press a button to start</strong></p>
+    </div>
+    <div class="group group-time">
+      <p>Time: <strong class="time">0</strong></p>
+    </div>  
   </div>
+
   <div class="group">
     <h1>Services with no dependencies</h1>
     <div class="flex">
@@ -45,6 +53,7 @@
       </div>
     </div>
   </div>
+
   <div class="group">
     <h1>Dependencies with services #1, #2, #3 and #4</h1>
     <div class="flex">
@@ -60,6 +69,7 @@
       </div>
     </div>
   </div>
+
   <div class="group">
     <h1>Dependencies with services #5 and #6</h1>
     <div class="service service7">
@@ -68,12 +78,13 @@
       <div>[Service #7] Ended at <span id="service7-end"></span></div>
     </div>
   </div>
+
   <script src="./helper.js"></script>
   <script>
     window.onload = function () {
-      window.objectOfNodes.buttons.button_callbacks.addEventListener("click", () => window.startScript('./callback.js', button_callbacks, '#ff8e8e'));
-      window.objectOfNodes.buttons.button_promises.addEventListener("click", () => window.startScript('./promises.js', button_promises, '#0077b6'));
-      window.objectOfNodes.buttons.button_async.addEventListener("click", () => window.startScript('./async.js', button_async, '#40916c'));
+      window.objectOfNodes.buttons.button_callbacks.addEventListener("click", () => window.startScript('./callbacks.js', button_callbacks, '#F9844A'));
+      window.objectOfNodes.buttons.button_promises.addEventListener("click", () => window.startScript('./promises.js', button_promises, '#277DA1'));
+      window.objectOfNodes.buttons.button_async.addEventListener("click", () => window.startScript('./async-await.js', button_async, '#43AA8B'));
     };
   </script>
 </body>

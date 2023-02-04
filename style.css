@@ -1,7 +1,7 @@
 body {
   font-family: monospace;
   font-size: 16px;
-  background-color: antiquewhite;
+  background-color: #EDEDE9;
 }
 h1 {
   font-size: 3vmax;
@@ -14,34 +14,11 @@ h1 {
   padding: 20px;
   text-align: center;
 }
-.group-pattern{
-  padding: 0;
-  width: 50%;
-  margin: 0 auto 15px;
-  height: 50px;
-}
-.group-pattern > p {
-  margin: 10px;
-}
 
-.flex {
-  display: flex;
-  justify-content: center;
-}
-.service {
-  border: 1px solid black;
-  box-shadow: 5px 5px #ddd;
-  height: calc(120px + 2wmin);
-  margin: 20px;
-  padding: 20px;
-}
-div{
-  font-size: 3vmin;
-  font-family: ui-monospace;
-}
 .group-buttons{
   display: flex;
   justify-content: space-evenly;
+  padding: 10px;
 }
 .button{
   all: unset;
@@ -60,11 +37,44 @@ button:nth-child(1):visited{
   background-color: black;
 }
 #start-callbacks{
-  background-color: #ff8e8e;
+  background-color: #F9844A;
 }
 #start-promises{
-  background-color: #0077b6;
+  background-color: #277DA1;
 }
 #start-async-await{
-  background-color: #40916c;
+  background-color: #43AA8B;
+}
+
+#group-desc{
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+}
+
+.group-pattern, .group-time{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 45%;
+  margin: 5px auto 5px;
+  height: 50px;
+  line-height: 4px;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+}
+.service {
+  border: 1px solid black;
+  box-shadow: 5px 5px #ddd;
+  height: calc(120px + 2wmin);
+  margin: 20px;
+  padding: 20px;
+}
+div{
+  font-size: 3vmin;
+  font-family: ui-monospace;
 }

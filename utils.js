@@ -32,8 +32,10 @@ export const logger = (n, totalDuration, time) => {
 }
 
 export const displayDuration = (n, startTime, duration) => {
-  window.objectOfNodes[n].start.innerHTML = startTime;
-  window.objectOfNodes[n].end.innerHTML = duration;
-  window.objectOfNodes[n].div.style.backgroundColor = window.window.colors[n];
+  window.objectOfNodes[n].start.style.color = "#000";;
+  window.objectOfNodes[n].end.style.color = "#000";
+  window.objectOfNodes[n].start.innerHTML = `${startTime}s`;
+  window.objectOfNodes[n].end.innerHTML = `${duration}s`;
+  window.objectOfNodes[n].div.style.backgroundColor = window.colors[n];
   window.objectOfNodes[n].div.style.color = "white"
 }
