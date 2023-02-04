@@ -17,23 +17,23 @@ const service = (n, dependencies, service, totalDuration = 0) => {
       totalDuration,
       totalDuration === 0 ? time : totalDuration + time
     );
-    dependencies[n - 1] = true;
-    if (dependencies[0] && dependencies[1]) {
-      dependencies[0] = false;
+    dependencies[n] = true;
+    if (dependencies[1] && dependencies[2]) {
+      dependencies[1] = false;
       objectOfDurations.duration1 > objectOfDurations.duration2
         ? (totalTime1 = objectOfDurations.duration1)
         : (totalTime1 = objectOfDurations.duration2);
       service(5, dependencies, service, totalTime1);
     }
-    if (dependencies[2] && dependencies[3]) {
-      dependencies[2] = false;
+    if (dependencies[3] && dependencies[4]) {
+      dependencies[3] = false;
       objectOfDurations.duration3 > objectOfDurations.duration4
         ? (totalTime2 = objectOfDurations.duration3)
         : (totalTime2 = objectOfDurations.duration4);
       service(6, dependencies, service, totalTime2);
     }
-    if (dependencies[4] && dependencies[5]) {
-      dependencies[4] = false;
+    if (dependencies[5] && dependencies[6]) {
+      dependencies[5] = false;
       objectOfDurations.duration5 + totalTime1 >
       objectOfDurations.duration6 + totalTime2
         ? (finalTime = objectOfDurations.duration5 + totalTime1)
