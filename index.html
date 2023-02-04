@@ -1,40 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <style>
-    body {
-      font-family: monospace;
-      font-size: 16px;
-    }
-    h1 {
-      font-size: 2vmax;
-      margin: 0 0 20px;
-    }
-    .group {
-      border: 2px solid black;
-      margin-bottom: 20px;
-      padding: 20px;
-    }
-    .flex {
-      display: flex;
-    }
-    .service {
-      border: 1px solid black;
-      box-shadow: 5px 5px #ddd;
-      height: 100px;
-      margin: 20px;
-      padding: 20px;
-    }
-    div{
-      font-size: 1.2vmax;
-    }
-  </style>
+  <link rel="stylesheet" href="./style.css" type="text/css">
 </head>
+
 <body>
+  <div class="group group-buttons">
+    <button id="start-callbacks" class="button" type="submit" onclick="">Start callbacks</button>
+    <button id="start-promises" class="button" type="submit" onclick="">Start promises</button>
+    <button id="start-async-await" class="button" type="submit" onclick="">Start async/await</button>
+  </div>
   <div class="group">
     <h1>Services with no dependencies</h1>
     <div class="flex">
@@ -85,6 +65,14 @@
       <div>[Service #7] Ended at <span id="service7-end"></span></div>
     </div>
   </div>
-  <script src='./promises.js' type="module" ></script>
+  <script src="./helper.js"></script>
+  <script>
+    window.onload = function () {
+      window.objectOfNodes.buttons.button_callbacks.addEventListener("click", () => window.startScript('./callback.js', button_callbacks));
+      window.objectOfNodes.buttons.button_promises.addEventListener("click", () => window.startScript('./promises.js', button_promises));
+      window.objectOfNodes.buttons.button_async.addEventListener("click", () => window.startScript('./async.js', button_async));
+    };
+  </script>
 </body>
+
 </html>

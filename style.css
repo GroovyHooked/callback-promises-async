@@ -1,0 +1,57 @@
+body {
+  font-family: monospace;
+  font-size: 16px;
+}
+h1 {
+  font-size: 2vmax;
+  margin: 0 0 20px;
+}
+.group {
+  border: 2px solid black;
+  margin-bottom: 20px;
+  padding: 20px;
+  text-align: center;
+}
+.flex {
+  display: flex;
+  justify-content: center;
+}
+.service {
+  border: 1px solid black;
+  box-shadow: 5px 5px #ddd;
+  height: calc(120px + 2wmin);
+  margin: 20px;
+  padding: 20px;
+}
+div{
+  font-size: 2.5vmin;
+}
+.group-buttons{
+  display: flex;
+  justify-content: space-evenly;
+}
+.button{
+  all: unset;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 2.5vmin;
+  margin: 4px 2px;
+  border: 2px solid rgb(117, 110, 110);
+}
+button:hover{
+  cursor: pointer;
+  border: 2px solid rgb(255, 255, 255);
+}
+button:nth-child(1):visited{
+  background-color: black;
+}
+#start-callbacks{
+  background-color: #ff8e8e;
+}
+#start-promises{
+  background-color: #0077b6;
+}
+#start-async-await{
+  background-color: #40916c;
+}

@@ -2,12 +2,12 @@ import { timer, logger, displayDuration } from './utils.js';
 
 const dependencies = {};
 
-const service = async (n, startTime, dep) => {
+const service = async (n, startTime, dependencies) => {
   const time = timer();
   const duration = Math.round((time / 1000) * 100) / 100;
   await new Promise((resolve) => {
     setTimeout(() => {
-      dep[`service${n}`] = true;
+      dependencies[`service${n}`] = true;
       logger(n, startTime, duration)
       displayDuration(n, startTime, duration + startTime);
       resolve();
