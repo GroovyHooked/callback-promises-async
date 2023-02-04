@@ -6,8 +6,18 @@ const objectOfDurations = {};
 let totalTime1 = 0;
 let totalTime2 = 0;
 let finalTime = 0;
+let isStarted = false;
+let chrono
+
+const startChrono = () => {
+  if (!isStarted) {
+    chrono = window.startChronometer();
+    isStarted = true;
+  }
+}
 
 const service = (n, dependencies, service, totalDuration = 0) => {
+  startChrono()
   const time = Math.round((timer() / 1000) * 100) / 100;
   objectOfDurations[`duration${n}`] = time;
   setTimeout(() => {
@@ -35,13 +45,15 @@ const service = (n, dependencies, service, totalDuration = 0) => {
     if (dependencies[5] && dependencies[6]) {
       dependencies[5] = false;
       objectOfDurations.duration5 + totalTime1 >
-      objectOfDurations.duration6 + totalTime2
+        objectOfDurations.duration6 + totalTime2
         ? (finalTime = objectOfDurations.duration5 + totalTime1)
         : (finalTime = objectOfDurations.duration6 + totalTime2);
       service(7, dependencies, undefined, finalTime);
+      clearInterval(chrono);
     }
   }, time);
 };
+
 
 for (let i = 1; i <= 4; i++) {
   service(i, dependencies, service);
