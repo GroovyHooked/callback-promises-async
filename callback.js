@@ -14,7 +14,7 @@ const service7_start = document.getElementById("service7-start");
 const service7_end = document.getElementById("service7-end");
 
 const timer = () => Math.random() * 10000;
-const dependencies = [];
+const dependencies = {};
 const objectOfDurations = {};
 
 let totalTime1 = 0;
@@ -24,9 +24,14 @@ let finalTime = 0;
 const service = (n, dependencies, service, totalDuration = 0) => {
   const time = Math.round((timer() / 1000) * 100) / 100;
   objectOfDurations[`duration${n}`] = time;
+  console.log({ objectOfDurations });
   setTimeout(() => {
     logger(n, totalDuration, time);
-    displayDuration(n, totalDuration, time);
+    displayDuration(
+      n,
+      totalDuration,
+      totalDuration === 0 ? time : totalDuration + time
+    );
     dependencies[n - 1] = true;
     if (dependencies[0] && dependencies[1]) {
       dependencies[0] = false;
@@ -44,21 +49,18 @@ const service = (n, dependencies, service, totalDuration = 0) => {
     }
     if (dependencies[4] && dependencies[5]) {
       dependencies[4] = false;
-      objectOfDurations.duration5 > objectOfDurations.duration6
-        ? (finalTime = objectOfDurations.duration5)
-        : (finalTime = objectOfDurations.duration6);
-      totalTime1 > totalTime2
-        ? (finalTime += totalTime1)
-        : (finalTime += totalTime2);
+      objectOfDurations.duration5 + totalTime1 >
+      objectOfDurations.duration6 + totalTime2
+        ? (finalTime = objectOfDurations.duration5 + totalTime1)
+        : (finalTime = objectOfDurations.duration6 + totalTime2);
       service(7, dependencies, undefined, finalTime);
     }
   }, time);
 };
 
-service(1, dependencies, service);
-service(2, dependencies, service);
-service(3, dependencies, service);
-service(4, dependencies, service);
+for (let i = 1; i <= 4; i++) {
+  service(i, dependencies, service);
+}
 
 function logger(n, totalDuration, time) {
   const pickColorAndLog = (n, totalDuration, time, color) => {
@@ -77,10 +79,10 @@ function logger(n, totalDuration, time) {
     );
   };
   if (n < 3) {
-    pickColorAndLog(n, totalDuration, time, "lightblue");
+    pickColorAndLog(n, totalDuration, time, "pink");
   }
   if (n === 3 || n === 4) {
-    pickColorAndLog(n, totalDuration, time, "pink");
+    pickColorAndLog(n, totalDuration, time, "lightblue");
   }
   if (n === 5) {
     pickColorAndLog(n, totalDuration, time, "red");
@@ -89,7 +91,7 @@ function logger(n, totalDuration, time) {
     pickColorAndLog(n, totalDuration, time, "blue");
   }
   if (n === 7) {
-    pickColorAndLog(n, totalDuration, time, "black");
+    pickColorAndLog(n, totalDuration, time, "green");
   }
 }
 
