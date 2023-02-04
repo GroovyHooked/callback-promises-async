@@ -48,7 +48,7 @@ export function logger(n, totalDuration, time) {
   }
 }
 
-const objectOfNode = {
+export const objectOfNode = {
   1: {
     start: service1_start,
     end: service1_end,

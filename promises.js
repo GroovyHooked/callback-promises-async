@@ -1,22 +1,5 @@
-const service1_start = document.getElementById("service1-start");
-const service2_start = document.getElementById("service2-start");
-const service3_start = document.getElementById("service3-start");
-const service4_start = document.getElementById("service4-start");
-const service1_end = document.getElementById("service1-end");
-const service2_end = document.getElementById("service2-end");
-const service3_end = document.getElementById("service3-end");
-const service4_end = document.getElementById("service4-end");
+import { logger, displayDuration, timer, objectOfNode } from "./utils.js";
 
-const service5_start = document.getElementById("service5-start");
-const service5_end = document.getElementById("service5-end");
-
-const service6_start = document.getElementById("service6-start");
-const service6_end = document.getElementById("service6-end");
-
-const service7_start = document.getElementById("service7-start");
-const service7_end = document.getElementById("service7-end");
-
-const timer = () => Math.random() * 10000;
 const dependencies = {
   service1: false,
   service2: false,
@@ -32,8 +15,8 @@ const service = (n, startElement, endElement, startTime, dep) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       dep[`service${n}`] = true;
-      console.log(`service${n}: started at ${startTime}s and lasted ${duration}s for a total of ${startTime + duration}s`);
-      displayDuration(startElement, endElement, startTime, duration + startTime);
+      logger(n, startTime, duration);
+      displayDuration(n, startTime, duration + startTime);
       resolve(duration + startTime);
     }, time);
   });
@@ -44,36 +27,26 @@ const runService = (n, startElement, endElement, startTime, deps) => {
   service(n, startElement, endElement, startTime, deps).then((duration) => {
     if (deps.service1 && deps.service2) {
       deps.service1 = false;
-      deps.service2 = false;
-      service(5, service5_start, service5_end, duration, deps).then((duration) => {
+      service(5, objectOfNode[5].start, objectOfNode[5].end, duration, deps).then((duration) => {
         if (deps.service5 && deps.service6) {
-          service(7, service7_start, service7_end, duration, deps)
+          service(7, objectOfNode[7].start, objectOfNode[7].end, duration, deps)
         }
       })
     }
     if (deps.service3 && deps.service4) {
       deps.service3 = false;
-      deps.service4 = false;
-      service(6, service6_start, service6_end, duration, deps).then((duration) => {
+      service(6, objectOfNode[6].start, objectOfNode[6].end, duration, deps).then((duration) => {
         if (deps.service5 && deps.service6) {
-          service(7, service7_start, service7_end, duration, deps)
+          service(7, objectOfNode[7].start, objectOfNode[7].end, duration, deps)
         }
       })
     }
   });
 }
 
-const displayDuration = (startElement, endElement, startTime, duration) => {
-  startElement.innerHTML = startTime;
-  endElement.innerHTML = duration;
-};
-
-
-runService(1, service1_start, service1_end, 0, dependencies);
-runService(2, service2_start, service2_end, 0, dependencies);
-runService(3, service3_start, service3_end, 0, dependencies);
-runService(4, service4_start, service4_end, 0, dependencies);
-
+for (let i = 1; i <= 4; i++) {
+  runService(i, objectOfNode[i].start, objectOfNode[i].end, 0, dependencies);
+}
 
 
 
