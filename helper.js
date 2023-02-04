@@ -20,6 +20,7 @@ const service5_div = document.querySelector(".service5");
 const service6_div = document.querySelector(".service6");
 const service7_div = document.querySelector(".service7");
 const pattern_span = document.querySelector(".pattern");
+const timer = document.querySelector(".time");
 
 const button_callbacks = document.getElementById("start-callbacks");
 const button_promises = document.getElementById("start-promises");
@@ -69,24 +70,24 @@ const objectOfNodes = {
 };
 
 const colors = {
-  1: "pink",
-  2: "pink",
-  3: "lightblue",
-  4: "lightblue",
-  5: "#ff8e8e",
-  6: "#0077b6",
-  7: "#40916c",
+  1: "#f9b049",
+  2: "#f9b049",
+  3: "#0096c7",
+  4: "#0096c7",
+  5: "#F9844A",
+  6: "#277DA1",
+  7: "#43AA8B",
 }
 
-window.cleanStyles = function () {
+window.cleanStyles = () => {
   for (let i = 1; i < 8; i++) {
-    objectOfNodes[i].div.style.backgroundColor = "white";
+    objectOfNodes[i].div.style.backgroundColor = "#D6CCC2";
     objectOfNodes[i].div.style.color = "black"
     objectOfNodes[i].start.innerHTML = "";
     objectOfNodes[i].end.innerHTML = "";
   }
 }
-window.startScript = function (src, button, color) {
+window.startScript = (src, button, color) => {
   window.cleanStyles();
   const scriptToRemove = document.querySelector('script[type="module"]');
   if (scriptToRemove) {
@@ -98,10 +99,20 @@ window.startScript = function (src, button, color) {
   document.body.appendChild(script);
   button.style.backgroundColor = 'grey';
   const pattern = src.split('.')[1].split('').slice(1).join('')
-  pattern_span.innerHTML = `started ${pattern}`;
+  pattern_span.innerHTML = `${pattern}`;
   pattern_span.style.color = color;
   console.log(`****************** ${pattern.toUpperCase()} ******************`)
 }
 
 window.objectOfNodes = objectOfNodes;
 window.colors = colors;
+
+window.startChronometer = () => {
+  let start = Date.now();
+  const interval = setInterval(() => {
+    timer.innerHTML = Math.round((Date.now() - start) / 1000 * 100) / 100;
+  }, 150);
+  return interval;
+}
+
+

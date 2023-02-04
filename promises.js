@@ -1,8 +1,18 @@
 import { logger, displayDuration, timer } from "./utils.js";
 
 const dependencies = {};
+let isStarted = false;
+let chrono
+
+const startChrono = () => {
+  if (!isStarted) {
+    chrono = window.startChronometer();
+    isStarted = true;
+  }
+}
 
 const service = (n, startTime, dependencies) => {
+  startChrono();
   const time = timer();
   const duration = Math.round(time / 1000 * 100) / 100;
   return new Promise((resolve) => {
@@ -11,6 +21,7 @@ const service = (n, startTime, dependencies) => {
       logger(n, startTime, duration);
       displayDuration(n, startTime, duration + startTime);
       resolve(duration + startTime);
+      if (n === 7) clearInterval(chrono);
     }, time);
   });
 };
